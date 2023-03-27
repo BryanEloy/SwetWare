@@ -7,6 +7,12 @@ const clienteSchema= Schema(
             required: true,
             trim: true
         },
+        email:{
+            type: String,
+            require: true,
+            trim: true,
+            unique: true
+        },
         direccion: {
             type: String,
             required: true

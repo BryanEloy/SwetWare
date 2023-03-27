@@ -13,6 +13,11 @@ const usuarioSchema= Schema(
             required: true,
             trim: true
         },
+        rol:{
+            type: String,
+            required: true,
+            emun: ['ADMIN_ROLE', 'USER_ROLE']
+        },
         email:{
             type: String,
             require: true,

@@ -1,8 +1,8 @@
-const {Schema, model}= require("mongoose");
+const {Schema, model, default: mongoose}= require("mongoose");
 
 const ventaSchema= Schema(
     {
-        empleado: {
+        usuario: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Empleado"
         },

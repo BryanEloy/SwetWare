@@ -18,7 +18,10 @@ class Servidor{
 
         //Endpoints al server
         this.paths={
-            example: "/api/example"
+            usuario: "/api/usuario",
+            venta: "/api/venta",
+            cliente: "/api/cliente",
+            producto: "/api/producto"
         }
         
         //Conexion a las DB
@@ -30,7 +33,7 @@ class Servidor{
         //Conectar servidor al puerto
         this.listen();
         //Sockets del server
-        this.sockets();
+        //this.sockets();
     }
 
     async conection(){
@@ -38,7 +41,10 @@ class Servidor{
     }
 
     routes(){
-        this.app.use( this.paths.users, require('../routes/usuario') );
+        this.app.use( this.paths.usuario, require('../routes/usuario') );
+        this.app.use( this.paths.venta, require('../routes/venta') );
+        this.app.use( this.paths.cliente, require('../routes/cliente') );
+        this.app.use( this.paths.producto, require('../routes/producto') );
     }
 
     middlewares(){
@@ -46,20 +52,20 @@ class Servidor{
         this.app.use( express.json() );
 
         //Habilitar CORS
-        const whiteList= [process.env.FRONTEND_URL];
-        const corsOptions={
-            origin: function(origin, callback){
-                if(whiteList.includes(origin)){
-                    //Permitir consulta a LA API
-                    callback(null, true);
-                }else{
-                    //No esta permitido
-                    console.log(origin);
-                    callback(new Error("Error de cors"));
-                }
-            }
-        }
-        this.app.use(cors(corsOptions));
+        // const whiteList= [process.env.FRONTEND_URL];
+        // const corsOptions={
+        //     origin: function(origin, callback){
+        //         if(whiteList.includes(origin)){
+        //             //Permitir consulta a LA API
+        //             callback(null, true);
+        //         }else{
+        //             //No esta permitido
+        //             console.log(origin);
+        //             callback(new Error("Error de cors"));
+        //         }
+        //     }
+        // }
+        // this.app.use(cors(corsOptions));
     }
 
     listen(){
